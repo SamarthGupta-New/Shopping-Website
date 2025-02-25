@@ -10,7 +10,6 @@ export const BestSeller = () => {
 
   useEffect(() => {
     const best = products.filter((product) => product.bestseller);
-    console.log(best);
     setbestSeller(best.slice(0, 5));
   }, []);
 
