@@ -6,10 +6,11 @@ import RelatedProducts from "../Components/RelatedProducts";
 
 const Product = () => {
   const { productId } = useParams();
-  const { products, currency } = useContext(ShopContext);
+  const { products, currency, addToCart } = useContext(ShopContext);
   const [productData, setproductData] = useState(false);
   const [image, setimage] = useState("");
   const [size, setsize] = useState("");
+  const [selectSize, setselectSize] = useState(false);
 
   const fetchProductData = async () => {
     products.map((item) => {
@@ -79,9 +80,10 @@ const Product = () => {
                   <button
                     onClick={() => {
                       setsize(item);
+                      setselectSize(true);
                     }}
                     className={`border py-2 px-4 ${
-                      item === size ? "border-orange-500" : ""
+                      item === size ? "border-orange-500" : "border-gray-200"
                     } bg-gray-100 cursor-pointer`}
                     key={ind}
                   >
@@ -91,7 +93,13 @@ const Product = () => {
               })}
             </div>
           </div>
-          <button className="bg-black cursor-pointer text-white px-8 py-3 text-sm active:bg-gray-700 ">
+          {selectSize ? "" : <h1 className="mb-3">Choose Size</h1>}
+          <button
+            onClick={() => {
+              selectSize ? addToCart(productData._id, size) : "";
+            }}
+            className="bg-black cursor-pointer text-white px-8 py-3 text-sm active:bg-gray-700 "
+          >
             ADD TO CART
           </button>
           <hr className="mt-8 text-gray-300 sm:w-4/5" />
