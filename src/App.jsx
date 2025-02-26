@@ -11,7 +11,9 @@ import Order from "../src/Pages/Orders";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import SearchBar from "./Components/SearchBar";
-
+import Men from "./Pages/Men";
+import Women from "./Pages/Women";
+import Kids from "./Pages/Kids";
 function App() {
   return (
     <>
@@ -20,13 +22,16 @@ function App() {
         <SearchBar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/collection" element={<Collection />} />
+          {/* <Route path="/collection" element={<Collection />} /> */}
+          <Route path="/men" element={<Men />} />
+          <Route path="/women" element={<Women />} />
+          <Route path="/kids" element={<Kids />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/product/:productId" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/place_order" element={<PlaceOrder />} />
+          <Route path="/place-order" element={<PlaceOrder />} />
           <Route path="/orders" element={<Order />} />
         </Routes>
         <Footer />

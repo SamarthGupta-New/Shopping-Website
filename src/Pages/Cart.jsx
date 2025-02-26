@@ -6,7 +6,7 @@ import CartTotal from "../Components/CartTotal";
 import { ImBin } from "react-icons/im";
 
 const Cart = () => {
-  const { products, currency, cartItems, updateQuantity } =
+  const { products, currency, cartItems, navigate, updateQuantity } =
     useContext(ShopContext);
 
   const [cartData, setcartData] = useState([]);
@@ -88,6 +88,14 @@ const Cart = () => {
       <div className="flex justify-end my-20">
         <div className="w-full sm:w-[450px]">
           <CartTotal />
+          <div className="w-full text-end">
+            <button
+              onClick={() => navigate("/place-order")}
+              className="bg-black cursor-pointer text-white text-sm my-8 py-3 px-8"
+            >
+              PROCEED TO CHECKOUT
+            </button>
+          </div>
         </div>
       </div>
     </div>

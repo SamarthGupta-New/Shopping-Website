@@ -5,7 +5,6 @@ import Title from "./Title";
 const CartTotal = () => {
   const { currency, delivery_fee, getCartAmount } = useContext(ShopContext);
 
-  // Ensure getCartAmount is callable and has a valid value
   const cartAmount = getCartAmount ? getCartAmount() : 0;
 
   return (
@@ -20,7 +19,7 @@ const CartTotal = () => {
               <p>SubTotal</p>
               <p>
                 {currency}
-                {cartAmount}
+                {cartAmount}.00
               </p>
             </div>
             <hr />
@@ -28,7 +27,7 @@ const CartTotal = () => {
               <p>Shipping Fee</p>
               <p>
                 {currency}
-                {delivery_fee}
+                {delivery_fee}.00
               </p>
             </div>
             <hr />
@@ -36,7 +35,7 @@ const CartTotal = () => {
               <b>Total</b>
               <b>
                 {currency}
-                {cartAmount + delivery_fee}
+                {cartAmount + delivery_fee}.00
               </b>
             </div>
           </div>

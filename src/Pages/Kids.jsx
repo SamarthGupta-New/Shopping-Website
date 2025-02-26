@@ -4,15 +4,16 @@ import { assets } from "../assets/assets";
 import Title from "../Components/Title";
 import ProductItem from "../Components/ProductItem";
 
-const Collection = () => {
+const Kids = () => {
   const { products, search, showSearch } = useContext(ShopContext);
   const [showFilter, setshowFilter] = useState(false);
   const [filterProducts, setfilterProducts] = useState([]);
-  const [category, setcategory] = useState([]);
+  const [category, setcategory] = useState(["Kids"]);
   const [subCategory, setsubCategory] = useState([]);
   const [sortType, setsortType] = useState("relevent");
 
   const toggleCategory = (e) => {
+    console.log(e.target.value);
     if (category.includes(e.target.value)) {
       setcategory((prev) =>
         prev.filter((product) => product !== e.target.value)
@@ -76,7 +77,7 @@ const Collection = () => {
 
   return (
     <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t">
-      {/* -------------------filter option------------------ */}
+      {/* filter option */}
       <div className="min-w-60">
         <p
           onClick={() => {
@@ -93,8 +94,8 @@ const Collection = () => {
             alt={"dropdown"}
           />
         </p>
-        {/*----------- filter category---------------------- */}
-        <div
+        {/* filter category */}
+        {/* <div
           className={`border sm:block border-gray-300 pl-5 py-3 mt-6 ${
             showFilter ? "" : "hidden"
           }`}
@@ -129,8 +130,8 @@ const Collection = () => {
               Kids
             </p>
           </div>
-        </div>
-        {/*--------------- Sub Category -------------------*/}
+        </div> */}
+        {/* Sub Category */}
         <div
           className={`border sm:block border-gray-300 pl-5 py-3 my-5 ${
             showFilter ? "" : "hidden"
@@ -168,7 +169,7 @@ const Collection = () => {
           </div>
         </div>
       </div>
-      {/*--------------------------- Right Side------------------------ */}
+      {/* Right Side */}
       <div className="flex-1">
         <div className="flex justify-between text-base sm:text-2xl mb-4">
           <Title text1={"ALL"} text2={"COLLECTIONS"} />
@@ -197,4 +198,4 @@ const Collection = () => {
   );
 };
 
-export default Collection;
+export default Kids;

@@ -9,7 +9,8 @@ const SearchBar = () => {
   const [isVisible, setisVisible] = useState(false);
   const location = useLocation();
   useEffect(() => {
-    if (location.pathname.includes("collection", "men", "women", "kids")) {
+    const paths = ["men", "women", "kids", "collection"];
+    if (paths.some((path) => location.pathname.includes(path))) {
       setisVisible(true);
     } else {
       setisVisible(false);

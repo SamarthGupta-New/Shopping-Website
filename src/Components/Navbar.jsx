@@ -1,11 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { assets } from "../assets/assets";
 import { NavLink, Link } from "react-router-dom";
 import { useState } from "react";
 import { ShopContext } from "./context/ShopContext";
+import { useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [isVisible, setisVisible] = useState(false);
+  const [searchIcon, setsearchIcon] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const paths = ["men", "women", "kids", "collection"];
+    if (paths.some((path) => location.pathname.includes(path))) {
+      setsearchIcon(true);
+    } else {
+      setsearchIcon(false);
+    }
+  }, [location]);
 
   const { setshowSearch, showSearch, getCartCount } = useContext(ShopContext);
   return (
@@ -18,11 +30,23 @@ const Navbar = () => {
           <p>Home</p>
           <hr className="w-3/4 border-none h-[1.5px] bg-gray-700 hidden" />
         </NavLink>
-        <NavLink
+        {/* <NavLink
           to={"/collection"}
           className="flex  flex-col gap-1 items-center"
         >
           <p>Collection</p>
+          <hr className="w-3/4  border-none h-[1.5px] bg-gray-700 hidden" />
+        </NavLink> */}
+        <NavLink to={"/men"} className="flex  flex-col gap-1 items-center">
+          <p>Men</p>
+          <hr className="w-3/4  border-none h-[1.5px] bg-gray-700 hidden" />
+        </NavLink>
+        <NavLink to={"/women"} className="flex  flex-col gap-1 items-center">
+          <p>Women</p>
+          <hr className="w-3/4  border-none h-[1.5px] bg-gray-700 hidden" />
+        </NavLink>
+        <NavLink to={"/kids"} className="flex  flex-col gap-1 items-center">
+          <p>Kids</p>
           <hr className="w-3/4  border-none h-[1.5px] bg-gray-700 hidden" />
         </NavLink>
         <NavLink to={"/about"} className="flex flex-col gap-1 items-center">
@@ -35,20 +59,26 @@ const Navbar = () => {
         </NavLink>
       </ul>
       <div className="flex items-center gap-6">
-        <img
-          onClick={() => {
-            setshowSearch(!showSearch);
-          }}
-          src={assets.search_icon}
-          alt={"search icon"}
-          className="w-5 cursor-pointer"
-        />
-        <div className="group relative">
+        {searchIcon ? (
           <img
+            onClick={() => {
+              setshowSearch(!showSearch);
+            }}
+            src={assets.search_icon}
+            alt={"search icon"}
             className="w-5 cursor-pointer"
-            src={assets.profile_icon}
-            alt={"profile icon"}
           />
+        ) : (
+          ""
+        )}
+        <div className="group relative">
+          <Link to="/login">
+            <img
+              className="w-5 cursor-pointer"
+              src={assets.profile_icon}
+              alt={"profile icon"}
+            />
+          </Link>
           {/* dropdown */}
           <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4 ">
             <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded">
@@ -103,9 +133,23 @@ const Navbar = () => {
           <NavLink
             onClick={() => setisVisible(false)}
             className="border py-2 pl-6 border-gray-200"
-            to={"/collection"}
+            to={"/men"}
           >
-            Collection
+            Men
+          </NavLink>
+          <NavLink
+            onClick={() => setisVisible(false)}
+            className="border py-2 pl-6 border-gray-200"
+            to={"/women"}
+          >
+            Women
+          </NavLink>
+          <NavLink
+            onClick={() => setisVisible(false)}
+            className="border py-2 pl-6 border-gray-200"
+            to={"/kids"}
+          >
+            Kids
           </NavLink>
           <NavLink
             onClick={() => setisVisible(false)}
